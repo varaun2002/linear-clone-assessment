@@ -151,8 +151,18 @@ export function IssuePanel() {
         {/* Description with Markdown Rendering */}
         <div className="mb-10">
           <div className="linear-label mb-3">Description</div>
-          <div className="prose prose-sm max-w-none prose-headings:font-semibold prose-headings:text-gray-900 prose-h2:text-base prose-h2:mt-4 prose-h2:mb-2 prose-p:text-sm prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-sm prose-ul:text-gray-700">
-            <ReactMarkdown>{selectedIssue.description}</ReactMarkdown>
+          <div className="prose prose-sm max-w-none">
+            <ReactMarkdown
+              components={{
+                h2: ({node, ...props}) => <h2 className="text-base font-bold text-gray-900 mt-4 mb-2" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-sm font-bold text-gray-900 mt-3 mb-1.5" {...props} />,
+                p: ({node, ...props}) => <p className="text-sm text-gray-700 leading-relaxed mb-3" {...props} />,
+                ul: ({node, ...props}) => <ul className="text-sm text-gray-700 space-y-1 ml-4 mb-3" {...props} />,
+                li: ({node, ...props}) => <li className="text-sm text-gray-700" {...props} />,
+              }}
+            >
+              {selectedIssue.description}
+            </ReactMarkdown>
           </div>
         </div>
 
