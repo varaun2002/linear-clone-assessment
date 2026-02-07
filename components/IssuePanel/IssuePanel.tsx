@@ -43,7 +43,6 @@ export function IssuePanel() {
 
   return (
     <div className="linear-panel h-screen w-full md:w-[640px] flex flex-col shadow-sm">
-      {/* Header */}
       <div className="flex items-center justify-between px-6 py-3.5 border-b border-gray-200">
         <div className="flex items-center gap-3">
           <span className="text-sm font-mono text-gray-500">{selectedIssue.identifier}</span>
@@ -55,7 +54,7 @@ export function IssuePanel() {
         <div className="flex items-center gap-0.5">
           <button
             onClick={copyLink}
-            className="p-2 rounded-md hover:bg-gray-100 transition-all duration-150 hover:scale-105 active:scale-95"
+            className="p-2 rounded-md hover:bg-gray-100 transition-all duration-150"
             title="Copy link"
           >
             {copied ? (
@@ -64,22 +63,20 @@ export function IssuePanel() {
               <Link2 className="h-4 w-4 text-gray-500" />
             )}
           </button>
-          <button className="p-2 rounded-md hover:bg-gray-100 transition-all duration-150 hover:scale-105 active:scale-95" title="Watch">
+          <button className="p-2 rounded-md hover:bg-gray-100 transition-all duration-150" title="Watch">
             <Eye className="h-4 w-4 text-gray-500" />
           </button>
-          <button className="p-2 rounded-md hover:bg-gray-100 transition-all duration-150 hover:scale-105 active:scale-95" title="More">
+          <button className="p-2 rounded-md hover:bg-gray-100 transition-all duration-150" title="More">
             <MoreHorizontal className="h-4 w-4 text-gray-500" />
           </button>
           <div className="w-px h-4 bg-gray-200 mx-1" />
-          <button className="p-2 rounded-md hover:bg-gray-100 transition-all duration-150 hover:scale-105 active:scale-95">
+          <button className="p-2 rounded-md hover:bg-gray-100 transition-all duration-150">
             <X className="h-4 w-4 text-gray-500" />
           </button>
         </div>
       </div>
 
-      {/* Content */}
       <div className="flex-1 overflow-y-auto px-6 py-6">
-        {/* Title */}
         <div className="mb-8">
           {isEditingTitle ? (
             <input
@@ -101,7 +98,6 @@ export function IssuePanel() {
           )}
         </div>
 
-        {/* Metadata Grid */}
         <div className="space-y-2 mb-8">
           <div className="metadata-row">
             <div className="w-32 linear-label">Assignee</div>
@@ -148,7 +144,6 @@ export function IssuePanel() {
           </div>
         </div>
 
-        {/* Description with Markdown Rendering */}
         <div className="mb-10">
           <div className="linear-label mb-3">Description</div>
           <div className="prose prose-sm max-w-none">
@@ -157,7 +152,7 @@ export function IssuePanel() {
                 h2: ({node, ...props}) => <h2 className="text-base font-bold text-gray-900 mt-4 mb-2" {...props} />,
                 h3: ({node, ...props}) => <h3 className="text-sm font-bold text-gray-900 mt-3 mb-1.5" {...props} />,
                 p: ({node, ...props}) => <p className="text-sm text-gray-700 leading-relaxed mb-3" {...props} />,
-                ul: ({node, ...props}) => <ul className="text-sm text-gray-700 space-y-1 ml-4 mb-3" {...props} />,
+                ul: ({node, ...props}) => <ul className="list-disc list-inside text-sm text-gray-700 space-y-1 mb-3" {...props} />,
                 li: ({node, ...props}) => <li className="text-sm text-gray-700" {...props} />,
               }}
             >
@@ -166,7 +161,6 @@ export function IssuePanel() {
           </div>
         </div>
 
-        {/* Comments */}
         <div>
           <div className="linear-label mb-4">Activity</div>
           <div className="space-y-5">
@@ -193,7 +187,6 @@ export function IssuePanel() {
             ))}
           </div>
 
-          {/* Comment Input */}
           <div className="flex gap-3 mt-6 pt-5 border-t border-gray-200">
             <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0 bg-gray-200 avatar-container">
               {selectedIssue.assignee && (
