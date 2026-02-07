@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Linear-specific styles with enhanced interactions */
+.linear-panel {
+  @apply bg-white border-l border-gray-200;
+}
+
+.linear-input {
+  @apply border-none bg-transparent focus:outline-none focus:ring-0;
+  transition: all 0.15s ease-in-out;
+}
+
+.linear-dropdown-item {
+  @apply flex items-center gap-2 px-2 py-1.5 text-sm rounded cursor-pointer;
+  transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.linear-dropdown-item:hover {
+  @apply bg-gray-100;
+  transform: translateX(2px);
+}
+
+.linear-label {
+  @apply text-xs font-medium text-gray-500 uppercase tracking-wide;
+}
+
+.linear-value {
+  @apply text-sm text-gray-900;
+}
+
+/* Enhanced metadata row hover */
+.metadata-row {
+  @apply flex items-center;
+  transition: background-color 0.15s ease;
+  margin: -4px -8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.metadata-row:hover {
+  @apply bg-gray-50;
+}
+
+/* Smooth dropdown transitions */
+.dropdown-trigger {
+  @apply flex items-center gap-2 px-2 py-1.5 rounded text-sm;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.dropdown-trigger:hover {
+  @apply bg-gray-100;
+  transform: scale(1.01);
+}
+
+.dropdown-trigger:active {
+  transform: scale(0.99);
+}
+
+/* Subtle pulse animation for avatars */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.avatar-container {
+  transition: all 0.2s ease;
+}
+
+.avatar-container:hover {
+  transform: scale(1.05);
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+/* Label badge animations */
+.label-badge {
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.label-badge:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Title editing focus state */
+.title-editable {
+  transition: all 0.15s ease;
+}
+
+.title-editable:hover {
+  @apply bg-gray-50;
+}
+
+/* Comment input focus */
+.comment-input:focus {
+  @apply ring-2 ring-blue-500 border-transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+/* Smooth scroll */
+.overflow-y-auto {
+  scroll-behavior: smooth;
+}
+
+/* Dropdown content slide in */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-state="open"] {
+  animation: slideDown 0.15s ease-out;
+}
