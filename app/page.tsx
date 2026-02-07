@@ -2,8 +2,23 @@
 
 import { IssuePanel } from '@/components/IssuePanel/IssuePanel';
 import { useIssueStore } from '@/lib/store';
-import { STATUS_COLORS, PRIORITY_COLORS } from '@/lib/mock-issues';
-import { CircleDot, Circle, CircleDashed, CheckCircle, AlertCircle, ArrowUp, ArrowRight, ArrowDown } from 'lucide-react';
+import { CircleDot, Circle, CircleDashed, CheckCircle, AlertCircle, ArrowUp, ArrowRight, ArrowDown, XCircle } from 'lucide-react';
+
+const STATUS_COLORS = {
+  backlog: 'border-gray-300 bg-gray-50',
+  todo: 'border-indigo-300 bg-indigo-50',
+  'in-progress': 'border-amber-300 bg-amber-50',
+  done: 'border-emerald-300 bg-emerald-50',
+  canceled: 'border-gray-300 bg-gray-100',
+};
+
+const PRIORITY_COLORS = {
+  'no-priority': 'text-gray-400',
+  urgent: 'text-red-500',
+  high: 'text-amber-500',
+  medium: 'text-blue-500',
+  low: 'text-gray-400',
+};
 
 const StatusIcon = ({ status }: { status: string }) => {
   const iconClass = "h-3.5 w-3.5";
@@ -16,6 +31,8 @@ const StatusIcon = ({ status }: { status: string }) => {
       return <CircleDot className={iconClass} />;
     case 'done':
       return <CheckCircle className={iconClass} />;
+    case 'canceled':
+      return <XCircle className={iconClass} />;
     default:
       return <Circle className={iconClass} />;
   }
@@ -40,7 +57,9 @@ const PriorityIcon = ({ priority }: { priority: string }) => {
 };
 
 export default function Home() {
-  const { issues, selectedIssueId, setSelectedIssue } = useIssueStore();
+  const issues = useIssueStore((state) => state.issues);
+  const selectedIssueId = useIssueStore((state) => state.selectedIssueId);
+  const setSelectedIssue = useIssueStore((state) => state.setSelectedIssue);
 
   return (
     <main className="flex h-screen bg-gray-50">
