@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { useIssueStore } from '@/lib/store';
 import { StatusDropdown } from '@/components/shared/StatusDropdown';
 import { PriorityDropdown } from '@/components/shared/PriorityDropdown';
@@ -16,7 +17,6 @@ export function IssuePanel() {
   const [titleValue, setTitleValue] = useState(selectedIssue.title);
   const [copied, setCopied] = useState(false);
 
-  // Update title value when selected issue changes
   useEffect(() => {
     setTitleValue(selectedIssue.title);
   }, [selectedIssue.id, selectedIssue.title]);
@@ -43,7 +43,7 @@ export function IssuePanel() {
 
   return (
     <div className="linear-panel h-screen w-full md:w-[640px] flex flex-col shadow-sm">
-      {/* Header with toolbar */}
+      {/* Header */}
       <div className="flex items-center justify-between px-6 py-3.5 border-b border-gray-200">
         <div className="flex items-center gap-3">
           <span className="text-sm font-mono text-gray-500">{selectedIssue.identifier}</span>
@@ -103,7 +103,6 @@ export function IssuePanel() {
 
         {/* Metadata Grid */}
         <div className="space-y-2 mb-8">
-          {/* Assignee */}
           <div className="metadata-row">
             <div className="w-32 linear-label">Assignee</div>
             <div className="flex-1">
@@ -111,7 +110,6 @@ export function IssuePanel() {
             </div>
           </div>
 
-          {/* Labels */}
           <div className="metadata-row">
             <div className="w-32 linear-label">Labels</div>
             <div className="flex-1">
@@ -119,7 +117,6 @@ export function IssuePanel() {
             </div>
           </div>
 
-          {/* Project */}
           <div className="metadata-row">
             <div className="w-32 linear-label">Project</div>
             <div className="flex-1 linear-value flex items-center gap-2 px-2 py-1.5">
@@ -128,7 +125,6 @@ export function IssuePanel() {
             </div>
           </div>
 
-          {/* Estimate */}
           <div className="metadata-row">
             <div className="w-32 linear-label">Estimate</div>
             <div className="flex-1">
@@ -139,7 +135,6 @@ export function IssuePanel() {
             </div>
           </div>
 
-          {/* Due Date */}
           <div className="metadata-row">
             <div className="w-32 linear-label">Due Date</div>
             <div className="flex-1">
@@ -153,13 +148,11 @@ export function IssuePanel() {
           </div>
         </div>
 
-        {/* Description */}
+        {/* Description with Markdown Rendering */}
         <div className="mb-10">
           <div className="linear-label mb-3">Description</div>
-          <div className="prose prose-sm max-w-none">
-            <div className="whitespace-pre-wrap text-sm text-gray-700 leading-relaxed">
-              {selectedIssue.description}
-            </div>
+          <div className="prose prose-sm max-w-none prose-headings:font-semibold prose-headings:text-gray-900 prose-h2:text-base prose-h2:mt-4 prose-h2:mb-2 prose-p:text-sm prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:text-sm prose-ul:text-gray-700">
+            <ReactMarkdown>{selectedIssue.description}</ReactMarkdown>
           </div>
         </div>
 
