@@ -4,7 +4,9 @@ A production-ready replica of Linear's issue detail panel, built as a full-stack
 
 ## 🚀 Live Demo
 
-**GitHub Repository:** https://github.com/varaun2002/linear-clone-assessment
+**🌐 Live Application:** https://linear-clone-assessment-stn1.vercel.app/
+
+**📂 GitHub Repository:** https://github.com/varaun2002/linear-clone-assessment
 
 ## ✨ Features
 
@@ -138,16 +140,14 @@ For production deployment, I would implement:
 ## 👨‍💻 Author
 
 **Varaun Gandhi**
-- Carnegie Mellon University - MS in AI Systems Management (2025)
+- Carnegie Mellon University - MS in AI Systems Management (Dec 2025)
 - Previous: AI Engineer Intern @ BorgWarner
-- Portfolio: [Your Portfolio URL]
-- LinkedIn: [Your LinkedIn]
-- Email: [Your Email]
+- GitHub: https://github.com/varaun2002
 
 ## 📄 License
 
-This project was created as part of a technical assessment and is available for review purposes.
+This project was created as part of a technical assessment for Verita AI.
 
 ---
 
-Built with ⚡ by Varaun Gandhi for Verita AI Full-Stack Engineering Assessment
+Built with ⚡ by Varaun Gandhi | [Live Demo](https://linear-clone-assessment-stn1.vercel.app/) | [GitHub](https://github.com/varaun2002/linear-clone-assessment)
