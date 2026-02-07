@@ -4,35 +4,51 @@ import { IssuePanel } from '@/components/IssuePanel/IssuePanel';
 import { useIssueStore } from '@/lib/store';
 import { CircleDot, Circle, CircleDashed, CheckCircle, AlertCircle, ArrowUp, ArrowRight, ArrowDown, XCircle } from 'lucide-react';
 
-const STATUS_COLORS = {
-  backlog: 'border-gray-300 bg-gray-50',
-  todo: 'border-indigo-300 bg-indigo-50',
-  'in-progress': 'border-amber-300 bg-amber-50',
-  done: 'border-emerald-300 bg-emerald-50',
-  canceled: 'border-gray-300 bg-gray-100',
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case 'backlog':
+      return 'border-l-gray-400 bg-gray-50';
+    case 'todo':
+      return 'border-l-indigo-500 bg-indigo-50';
+    case 'in-progress':
+      return 'border-l-amber-500 bg-amber-50';
+    case 'done':
+      return 'border-l-emerald-500 bg-emerald-50';
+    case 'canceled':
+      return 'border-l-gray-400 bg-gray-100';
+    default:
+      return 'border-l-gray-300 bg-white';
+  }
 };
 
-const PRIORITY_COLORS = {
-  'no-priority': 'text-gray-400',
-  urgent: 'text-red-500',
-  high: 'text-amber-500',
-  medium: 'text-blue-500',
-  low: 'text-gray-400',
+const getPriorityColor = (priority: string) => {
+  switch (priority) {
+    case 'urgent':
+      return 'text-red-500';
+    case 'high':
+      return 'text-amber-500';
+    case 'medium':
+      return 'text-blue-500';
+    case 'low':
+      return 'text-gray-400';
+    default:
+      return 'text-gray-400';
+  }
 };
 
 const StatusIcon = ({ status }: { status: string }) => {
   const iconClass = "h-3.5 w-3.5";
   switch (status) {
     case 'backlog':
-      return <CircleDashed className={iconClass} />;
+      return <CircleDashed className={`${iconClass} text-gray-500`} />;
     case 'todo':
-      return <Circle className={iconClass} />;
+      return <Circle className={`${iconClass} text-indigo-500`} />;
     case 'in-progress':
-      return <CircleDot className={iconClass} />;
+      return <CircleDot className={`${iconClass} text-amber-500`} />;
     case 'done':
-      return <CheckCircle className={iconClass} />;
+      return <CheckCircle className={`${iconClass} text-emerald-500`} />;
     case 'canceled':
-      return <XCircle className={iconClass} />;
+      return <XCircle className={`${iconClass} text-gray-500`} />;
     default:
       return <Circle className={iconClass} />;
   }
@@ -40,7 +56,7 @@ const StatusIcon = ({ status }: { status: string }) => {
 
 const PriorityIcon = ({ priority }: { priority: string }) => {
   const iconClass = "h-3.5 w-3.5";
-  const colorClass = PRIORITY_COLORS[priority as keyof typeof PRIORITY_COLORS];
+  const colorClass = getPriorityColor(priority);
   
   switch (priority) {
     case 'urgent':
@@ -75,8 +91,8 @@ export default function Home() {
               <div
                 key={issue.id}
                 onClick={() => setSelectedIssue(issue.id)}
-                className={`p-3 rounded-lg border-l-2 transition-all duration-150 cursor-pointer hover:shadow-sm ${
-                  STATUS_COLORS[issue.status as keyof typeof STATUS_COLORS]
+                className={`p-3 rounded-lg border-l-4 transition-all duration-150 cursor-pointer hover:shadow-sm ${
+                  getStatusColor(issue.status)
                 } ${
                   issue.id === selectedIssueId
                     ? 'ring-2 ring-blue-500 ring-offset-1 shadow-md'
