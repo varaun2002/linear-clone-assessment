@@ -2,11 +2,6 @@
 
 A production-ready replica of Linear's issue detail panel, built as a full-stack rapid prototyping assessment.
 
-![Linear Clone Demo](https://img.shields.io/badge/Status-Complete-success)
-![Next.js](https://img.shields.io/badge/Next.js-14-black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-38bdf8)
-
 ## 🚀 Live Demo
 
 **GitHub Repository:** https://github.com/varaun2002/linear-clone-assessment
